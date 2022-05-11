@@ -24,11 +24,32 @@ public class Practice002 {
         }
     }
 }
+/*
+      [다른풀이]
+      char input = sc.next().charAt(0); // 객체.charAt(index)는 객체의 인덱스에 위치한 문자를 찾음.
+      int output = 0;
+      int step = (int)'a' - (int)'A'; // 대-소문자 차이
+      if (input>= 'a' && input <= 'z') {
+            output = (int)input - step;
+            System.out.println((char)output);
+      } else if (input >= 'A' && input <= 'Z') {
+            output = (int)input + step;
+            System.out.println((char)output);
+      } else {
+            System.out.println("알파벳이 아닙니다.");
+      }
 
-//      1. 문자를 ASCII로 받으려면 byte[] 형태의 객체에 받는다.
-//         이때의 메서드는 객체.getBytes(StandardCharsets.US_ASCII)다.
-//         배열 형태로 받기 때문에 문자 여러개를 받을 수도 있다.
-//      2. ASCII를 다시 문자로 변환하려면 Character.toString(변수) 메서드를 사용한다.
-//      [관련링크]
-//      문자 -> ASCII: https://www.delftstack.com/ko/howto/java/how-to-convert-character-to-ascii-numeric-value-in-java/
-//      ASCII -> 문자: https://www.delftstack.com/ko/howto/java/java-ascii-to-char/
+      [학습내용]
+      1. 문자를 ASCII로 받으려면 byte[] 형태의 객체에 받는다.
+         이때의 메서드는 객체.getBytes(StandardCharsets.US_ASCII)다.
+         배열 형태로 받기 때문에 문자 여러개를 받을 수도 있다.
+      2. ASCII를 다시 문자로 변환하려면 Character.toString(변수) 메서드를 사용한다.
+      3. 문자를 1개만 핸들링할땐 형변환만으로도 가능하다.
+         char a = 'a' 일때, (int)a 는 97이 됨.
+         int b = 97 일때, (char)b 는 'a'가 됨.
+
+      [관련링크]
+      문자 -> ASCII: https://www.delftstack.com/ko/howto/java/how-to-convert-character-to-ascii-numeric-value-in-java/
+      ASCII -> 문자: https://www.delftstack.com/ko/howto/java/java-ascii-to-char/
+
+*/
