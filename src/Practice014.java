@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-
 public class Practice014 {
     //    Q14. M x N 행렬 정보가 2차원 정수형 배열matrix에 주어지면
 //    나선형 모양으로 출력하기.
@@ -109,7 +108,6 @@ public class Practice014 {
         }
         return result;
     }
-
 }
 
 /*
