@@ -48,6 +48,24 @@ public class Practice033 {
         String inputstr = "x+5-3+x=6+x-2";
         System.out.println(solution(inputstr));
     }
+
+    //정규표현식
+    public static int[] sort2(String str) {
+        int[] side = new int[2];
+
+        for(String s : str.split("(?=[+-])")) {
+            if (s.equals("+x") || s.equals("x")) {
+                side[0]++;
+            } else if (s.equals("-x")) {
+                side[0]--;
+            } else if (s.contains("x")) {
+                side[0] += Integer.parseInt(s.substring(0,s.length()-1));
+            } else {
+                side[1] += Integer.parseInt(s);
+            }
+        }
+        return side;
+    }
 }
 
 /*
@@ -55,4 +73,6 @@ public class Practice033 {
 방정식에서 해를 구할 때는
 1) 계수만 배열을 가지고 계산
 2) +,-는 boolean
+**정규표현식**
+https://coding-factory.tistory.com/529
  */
