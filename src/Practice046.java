@@ -40,3 +40,17 @@ public class Practice046 {
         System.out.println(decode("5{he2{l}o}friend"));
     }
 }
+/*
+[학습내용]
+필요한 인덱스 활용하기.
+
+[String에서 중간 문자를 지우는 방법]
+String str = "Hello Java";
+int eraseNum = 5;
+<substring으로> - 중간에 뭘 추가하기 좋음
+str = str.substring(0,eraseNum) + str.substring(eraseNum+1);
+<deleteCharAt> - 빠르게 삭제하기 좋음
+str = str.deleteCharAt(eraseNum);
+<replace> - 인덱스를 모르더라도 문자를 알면 가능
+str = str.replace(" ", "");
+ */
