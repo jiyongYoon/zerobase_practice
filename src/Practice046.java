@@ -36,8 +36,45 @@ public class Practice046 {
         return code;
     }
 
+/*  다른 풀이 (재귀)
+
+    static int idx = 0; // 재귀 전체에 쓰일 인덱스를 맴버변수로.
+
+    public static String solution(String code) {
+        return recursive(code);
+    }
+
+    public static String recursive(String s) {
+        String answer = ""; // 수정해서 기록한 값을 받아줄 변수(정답)
+        String tmp = ""; // 재귀에서 나온 값을 받아줄 변수
+        int num = 0; // 반복할 횟수
+        while(idx<s.length()) { // 인덱스가 맨 끝까지 갈때까지
+            if(Character.isDigit(s.charAt(idx))) { // 숫자면
+                num = Character.getNumericValue(s.charAt(idx)); // 보관하고
+                idx++; // 한칸 뒤로
+            } else if(s.charAt(idx)=='{') { // { 면
+                idx++; // 한칸 뒤로
+                tmp = recursive(s); // 재귀 호출
+                answer += tmp.repeat(num); // 재귀 나오면 재귀에서 받아온 값을 정답에 기입
+            } else if(s.charAt(idx)=='}') { // } 면
+                idx++; // 한칸 뒤로
+                break; // 재귀 탈출
+            } else { // 문자면
+                answer += s.charAt(idx); // 정답기입
+                idx++; // 한칸뒤로
+            }
+        }
+
+        return answer;
+    }
+*/
+
     public static void main (String[]args){
-        System.out.println(decode("5{he2{l}o}friend"));
+        System.out.println(decode("6{a2{b4{c}d}e}f"));
+        System.out.println(decode("ab3{cd2{ef4{ge}hi}jk}lm"));
+        System.out.println(decode("ab3{cd2{ef4{ge}hi}jk}lm5{qw3{we}}"));
+        System.out.println(decode("ab3{cd2{ef4{ge}hi}jk}lm5{qw3{we}}5{z}2{a}"));
+        System.out.println(decode("ab3{cd2{ef4{ge}hi}jk}lm5{qw3{we}}5{z}2{ahr}"));
     }
 }
 /*
