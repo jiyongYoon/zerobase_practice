@@ -1,8 +1,11 @@
 // 프로그래머스 Lv.2
 // 기능개발
 import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.Queue;
 
 public class Practice076 {
+    /*
     public static ArrayList<Integer> solution(int[] progresses, int[] speeds) {
         ArrayList<Integer> answer = new ArrayList<>();
 
@@ -31,6 +34,42 @@ public class Practice076 {
                 answer.add(serveCnt);
                 serveCnt = 0;
             }
+        }
+        return answer;
+    }
+    */
+
+    public static ArrayList<Integer> solution(int[] progresses, int[] speeds) {
+        Queue<Integer> queue = new LinkedList<>();
+        ArrayList<Integer> answer = new ArrayList<>(); // 정답 리스트
+        // 각 기능이 완성되는데 걸리는 날짜 배열
+        int[] days = new int[progresses.length];
+        // days 배열 채우기
+        for (int i = 0; i < progresses.length; i++) {
+            int cnt = 0; // 완성에 필요한 일수계산
+            while(progresses[i] < 100) {
+                progresses[i] += speeds[i];
+                cnt++;
+            }
+            days[i] = cnt;
+        }
+        // 큐에 다 넣기
+        for (int i = 0; i < days.length; i++) {
+            queue.add(days[i]);
+        }
+
+        int cnt = 0; // 한번에 배포하는 기능 카운트 변수
+        // 큐가 빌때까지
+        while(!queue.isEmpty()) {
+            int cur = queue.poll(); // 큐에서 하나 꺼내고
+            cnt++; // 배포 카운트
+            // 큐에 아직 있고 먼저 꺼낸게 다음 꺼낼거보다 숫자가 크거나 같으면
+            while(!queue.isEmpty() && cur >= queue.peek()) {
+                queue.poll(); // 그것도 꺼냄(cur 업데이트)
+                cnt++; // 기능 카운트
+            }
+            answer.add(cnt); // 정답배열에 넣고
+            cnt = 0; // 초기화
         }
         return answer;
     }
