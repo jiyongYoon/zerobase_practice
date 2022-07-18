@@ -9,7 +9,7 @@
  0 <=최소 시간과 그 경우 땅의 높이 출력 <= 256
  0 <= 인벤에는 땅 B개가 있음 <= 6.4 X 10^7 64,000,000
 
- 1. 아이디어
+1. 아이디어
  2개를 채우는것과 1개를 파는건 동일한 시간
  목표값을 바로 정할 수 있나?
  숫자를 넣을 때 높은건 +, 낮은건 -로 해서 평균값을 구할 수 있을까?
@@ -20,7 +20,7 @@
 
 2. 시간복잡도
 500*500 = 250,000
-O(N^2)이 1만 넘는데 가능하다고? -> 확인 필요
+O(N^2)은 연산횟수 40,000*40,000까지 가능 (보수적으로 10,000까지 잡으라고 하는 것)
 
 3. 자료구조
 n, m, b 모두 int 가능 (-20억 ~ 20억)
@@ -36,22 +36,22 @@ import java.util.StringTokenizer;
 
 public class Practice111 {
     static int[][] ground; // 땅
-    static int maxGround; // 최대높이
+    static int maxHeight; // 최대높이
     public static void solution(int n, int m, int b) {
         int answerTime = Integer.MAX_VALUE;
         int answerHeight = -1; // 높이정답 업데이트 변수
         int beforeAnswerT1 = 0; // 이전 정답시간 업데이트 변수 -> 나중에 return에 사용됨
-        while(maxGround >= 0) { // 최대높이서부터 내려오면서 계산
+        while(maxHeight >= 0) { // 최대높이서부터 내려오면서 계산
             int time = 0; // 시간 초기화
             int block = b; // 블럭개수 초기화
             for (int i = 0; i < n; i++) {
                 for (int j = 0; j < m; j++) {
-                    if(ground[i][j] > maxGround) { // 평단화 할 높아보다 높은 경우 땅 파야됨
-                        time = time + 2 * (ground[i][j] - maxGround);
-                        block += ground[i][j] - maxGround;
-                    } else if(ground[i][j] < maxGround) { // 평탄화 할 높이보다 낮은 경우 땅 메꿔
-                        time = time + (maxGround - ground[i][j]);
-                        block -= maxGround - ground[i][j];
+                    if(ground[i][j] > maxHeight) { // 평단화 할 높아보다 높은 경우 땅 파야됨
+                        time = time + 2 * (ground[i][j] - maxHeight);
+                        block += ground[i][j] - maxHeight;
+                    } else if(ground[i][j] < maxHeight) { // 평탄화 할 높이보다 낮은 경우 땅 메꿔
+                        time = time + (maxHeight - ground[i][j]);
+                        block -= maxHeight - ground[i][j];
                     } else {} // 같으면 넘어가
                 }
             }
@@ -60,7 +60,7 @@ public class Practice111 {
                 if(time < answerTime) { // 지금 시간이 이전 시간보다 짧으면 업데이트
                     beforeAnswerT1 = answerTime; // 이전 정답을 보관해놓고
                     answerTime = time; // 새로운 시간 업데이트
-                    answerHeight = maxGround; // 새로운 높이 업데이트
+                    answerHeight = maxHeight; // 새로운 높이 업데이트
 
                     // 만약 새롭게 정답 업데이트 하려고 했는데 오히려 시간이 증가하는 중이면 V 곡선을 그릴것이기 때문에
                 } else if(time > answerTime && answerTime < beforeAnswerT1) {
@@ -68,7 +68,7 @@ public class Practice111 {
                     return; // 정답 출력하고 끝
                 }
             }
-            maxGround--;
+            maxHeight--;
         }
         System.out.println(answerTime + " " + answerHeight);
     }
@@ -84,7 +84,7 @@ public class Practice111 {
             st = new StringTokenizer(br.readLine());
             for (int j = 0; j < m; j++) {
                 ground[i][j] = Integer.parseInt(st.nextToken());
-                maxGround = Math.max(ground[i][j], maxGround);
+                maxHeight = Math.max(ground[i][j], maxHeight);
             }
         }
         solution(n, m, b);
