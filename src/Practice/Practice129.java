@@ -14,9 +14,9 @@ public class Practice129 {
         for (int i = 0; i < d.length; i++) {
             totalPay += d[i];
             if(budget == totalPay) {
-                return i;
+                return i + 1;
             } else if(budget < totalPay) {
-                return i - 1;
+                return i;
             }
         }
         return d.length;
@@ -70,6 +70,7 @@ public class Practice129 {
         int budget = 9;
 
         System.out.println(solution(d, budget));
+        System.out.println(solution2(d, budget));
     }
 }
 
