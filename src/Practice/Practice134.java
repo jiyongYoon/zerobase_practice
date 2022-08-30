@@ -44,3 +44,8 @@ public class Practice134 {
         solution(k);
     }
 }
+
+/*
+[학습내용]
+while문은 if문 없이도 조건문으로도 사용 가능하다
+ */
