@@ -171,6 +171,9 @@ public class Heap {
         System.out.println("삭제: " + minHeap.delete());
         minHeap.printTree();
 
+        System.out.println();
+        System.out.println();
+
         // MaxHeap Test code
         MaxHeap maxHeap = new MaxHeap();
         System.out.println("== 데이터 삽입 ==");
